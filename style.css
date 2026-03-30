@@ -1,9 +1,11 @@
-/* --- Variabel Global (Dark Theme & Colors) --- */
+/* --- Variabel Global (Dark Green Theme & Colors) --- */
 :root {
-    --bg-color: #0f0f13;
+    /* Hijau Gelap sebagai warna utama */
+    --bg-color: #0d1f15; 
     --text-primary: #ffffff;
-    --text-secondary: #a0a0b0;
-    --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --text-secondary: #a8c4b4;
+    /* Gradasi Hijau/Teal untuk aksen */
+    --accent-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.08);
 }
@@ -14,7 +16,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth; /* Untuk animasi scroll menu */
+    scroll-behavior: smooth; 
 }
 
 body {
@@ -38,7 +40,7 @@ body {
 .loader {
     width: 50px; height: 50px;
     border: 3px solid var(--glass-border);
-    border-top-color: #00f2fe;
+    border-top-color: #38ef7d;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -52,8 +54,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(15, 15, 19, 0.8);
-    backdrop-filter: blur(10px); /* Efek blur navbar */
+    /* Warna latar navbar yang match dengan background hijau gelap */
+    background: rgba(13, 31, 21, 0.85); 
+    backdrop-filter: blur(10px); 
     z-index: 1000;
     border-bottom: 1px solid var(--glass-border);
 }
@@ -80,7 +83,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #00f2fe;
+    color: #38ef7d;
 }
 
 /* --- Layout Sections --- */
@@ -112,19 +115,67 @@ section {
 
 .glass-panel:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px 0 rgba(0, 242, 254, 0.1);
+    box-shadow: 0 12px 40px 0 rgba(56, 239, 125, 0.1); /* Glow hijau */
 }
 
 /* --- Hero Section --- */
 .hero {
-    align-items: flex-start;
+    display: flex;
+    flex-direction: row; /* Membuat teks dan gambar bersebelahan */
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
 }
-.greeting { color: #00f2fe; letter-spacing: 2px; margin-bottom: 10px; }
+.hero-content {
+    flex: 1;
+}
+.greeting { color: #38ef7d; letter-spacing: 2px; margin-bottom: 10px; }
 .name { font-size: 4rem; font-weight: 700; margin-bottom: 10px; line-height: 1.1; }
 .role { font-size: 2rem; color: var(--text-secondary); margin-bottom: 20px; }
 .description { max-width: 600px; color: var(--text-secondary); margin-bottom: 40px; }
 
+/* --- Gambar Profil & Animasi --- */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--glass-border);
+    /* Animasi box-shadow glow */
+    box-shadow: 0 0 30px rgba(17, 153, 142, 0.5);
+    /* Pemanggilan animasi floating */
+    animation: floatProfile 4s ease-in-out infinite;
+}
+
+@keyframes floatProfile {
+    0% {
+        transform: translateY(0px);
+        box-shadow: 0 0 30px rgba(17, 153, 142, 0.4);
+    }
+    50% {
+        transform: translateY(-20px);
+        box-shadow: 0 0 50px rgba(56, 239, 125, 0.7);
+    }
+    100% {
+        transform: translateY(0px);
+        box-shadow: 0 0 30px rgba(17, 153, 142, 0.4);
+    }
+}
+
 /* --- Buttons --- */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
 .btn {
     padding: 12px 30px;
     border-radius: 8px;
@@ -140,14 +191,13 @@ section {
     color: #000;
 }
 .primary-btn:hover {
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.6); /* Glow effect */
+    box-shadow: 0 0 20px rgba(56, 239, 125, 0.6); /* Glow effect hijau */
     transform: translateY(-2px);
 }
 .secondary-btn {
     background: transparent;
     color: var(--text-primary);
     border: 1px solid var(--text-primary);
-    margin-top: 15px;
 }
 .secondary-btn:hover {
     background: var(--text-primary);
@@ -163,7 +213,7 @@ section {
 
 .project-img {
     height: 200px;
-    background: #1a1a24;
+    background: rgba(255,255,255,0.05);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -176,7 +226,7 @@ section {
 footer {
     text-align: center;
     padding: 30px;
-    background: #0a0a0d;
+    background: #09170e; /* Lebih gelap dari bg utama */
     color: var(--text-secondary);
     font-size: 0.9rem;
 }
@@ -200,6 +250,24 @@ footer {
 @media (max-width: 768px) {
     .navbar { padding: 20px; flex-direction: column; gap: 15px; }
     .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+    
+    /* Ubah arah flex agar gambar muncul di atas atau bawah teks saat di layar kecil */
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 150px;
+    }
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-pic {
+        width: 250px;
+        height: 250px;
+    }
+    
     .name { font-size: 2.5rem; }
     .role { font-size: 1.5rem; }
     section { padding: 120px 5% 60px; }
